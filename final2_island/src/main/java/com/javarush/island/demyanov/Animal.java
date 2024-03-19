@@ -2,25 +2,23 @@ package com.javarush.island.demyanov;
 
 
 public abstract class Animal {
-
-
-
-
-
+    static int hunger;
 
     void eat() {
-    }
 
-    void move() {
-    }
-
-    void chooseDirection() {
     }
 
     void multiply() {
+
     }
 
     void die() {
+
+    }
+
+    void move() { // inside - choose direction
+
+
     }
 
 }
