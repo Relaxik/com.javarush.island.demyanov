@@ -1,8 +1,4 @@
 package com.javarush.island.demyanov;
 
-
-
-
-public class Wolf extends Predator {
-
+public class Horse extends Herbivorous {
 }

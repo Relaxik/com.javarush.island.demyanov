@@ -10,6 +10,7 @@ import java.lang.annotation.Target;
 @Target(value = ElementType.TYPE)
 
 public @interface  Eatable {
+    int value () default 0;
 
 
 
