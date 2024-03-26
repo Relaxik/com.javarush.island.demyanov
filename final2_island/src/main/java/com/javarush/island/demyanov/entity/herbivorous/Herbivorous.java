@@ -4,7 +4,7 @@ import com.javarush.island.demyanov.Eatable;
 import com.javarush.island.demyanov.entity.Animal;
 
 @Eatable
-class Herbivorous extends Animal {
+public class Herbivorous extends Animal {
 
 
 }

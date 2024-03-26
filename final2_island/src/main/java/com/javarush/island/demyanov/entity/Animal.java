@@ -1,75 +1,101 @@
 package com.javarush.island.demyanov.entity;
 
 import com.javarush.island.demyanov.Data;
+import com.javarush.island.demyanov.entity.herbivorous.Herbivorous;
+
 
 import java.util.HashMap;
 import java.util.concurrent.ThreadLocalRandom;
 
 
+
 public abstract class Animal {
 
-    Animal animal = this;
+    private Animal animal = this;
+    private String name = getAnimalName();
+    private HashMap<Class<? extends Animal>, Integer> classIntegerHashMap = Data.foodForAll.get(animal.getClass().getSimpleName());
 
-    String getAnimalName() {
+
+    private String getAnimalName() {
 
         return this.getClass().getSimpleName() + " " + Data.getRandomName();
     }
 
-    String name = getAnimalName();
 
-    public void aliveCheck() {
-        if (Data.getHealthPoints(this.getClass()) > 0) {
+    private void aliveCheck() {
+        if (animal != null && Data.getHealthPoints(this.getClass()) > 0) {
             Data.isAlive = true;
         } else {
             Data.isAlive = false;
+
         }
     }
 
+    private boolean predatorCheck() {
+        if (Data.foodForAll.containsKey(animal.getClass().getSimpleName())) {
+            return true;
+        }
+        return false;
+    }
 
     public void eat() {
-        HashMap<Class<? extends Animal>, Integer> classIntegerHashMap = Data.foodForAll.get(animal.getClass().getSimpleName());
-        for (Class<? extends Animal> createAnimal : Creator.createAnimals) {
-            if ((classIntegerHashMap.get(createAnimal) != null) && classIntegerHashMap.get(createAnimal) != 0 &&
-                    (ThreadLocalRandom.current().nextInt() <= classIntegerHashMap.get(createAnimal))) {
-                System.out.println(name + " eated " + createAnimal.getSimpleName());
+        aliveCheck();
+        predatorCheck();
+
+        for (Animal createAnimal : Creator.createAnimals) {
+            if (predatorCheck() == true && (classIntegerHashMap.get(createAnimal.getClass()) != null) && classIntegerHashMap.get(createAnimal.getClass()) != 0 &&
+                    (ThreadLocalRandom.current().nextInt() <= classIntegerHashMap.get(createAnimal.getClass()))) {
+
+
+                System.out.println(name + " eated " + createAnimal.getClass().getSimpleName());
+
                 Data.setFullHPBar(this.getClass());
                 break;
-            } else if ((classIntegerHashMap.get(createAnimal) != null) && classIntegerHashMap.get(createAnimal) != 0 &&
-                    (ThreadLocalRandom.current().nextInt() > classIntegerHashMap.get(createAnimal))) {
-                System.out.println(name + " failed to eat " + createAnimal.getSimpleName());
+
+            } else if (predatorCheck() == true && (classIntegerHashMap.get(createAnimal.getClass()) != null) && classIntegerHashMap.get(createAnimal.getClass()) != 0 &&
+                    (ThreadLocalRandom.current().nextInt() > classIntegerHashMap.get(createAnimal.getClass()))) {
+
+
+                System.out.println(name + " failed to eat " + createAnimal.getClass().getSimpleName());
+
                 break;
+            }
+        }
+
+    }
+
+    public void eatPlants() {
+        if (animal instanceof Herbivorous) {
+            int i = Creator.randomizer(0, Data.plants.size());
+            if (Data.plants.get(i) == null) {
+
+//                System.out.println("There is no plant on cell # " + i);
+            } else {
+                Data.plants.set(i, null);
+//                System.out.println(name + " eated plant # " + i);
+
+
             }
         }
     }
 
-    public boolean eatPlants() {
-        int i = Creator.randomizer(0, Data.plants.size());
-        if (Data.plants.get(i) == null) {
-            System.out.println("There is no plant on cell # " + i);
-            return false;
-        } else {
-            Data.plants.set(i, null);
-            System.out.println(name + " eated plant # " + i);
-            return true;
-        }
 
-    }
 
     public void multiply() {
         int i = 0;
-        for (Class<? extends Animal> createAnimal : Creator.createAnimals) {
-            if (createAnimal.getSimpleName().equals(animal.getClass().getSimpleName())) {
-                i++;
+
+
+            for (Animal createAnimal : Creator.createAnimals) {
+                if (createAnimal.equals(animal)) {
+                    i++;
+                }
             }
-        }
-        if (i > 0) {
-            Creator.createNewAnimals(animal.getClass(), i / 2);
-            System.out.println("That was amazing. " + "New " + animal.getClass().getSimpleName() + " born");
-            System.out.println(animal.getClass().getSimpleName() + " population " + i);
-        } else {
-            System.out.println("Sichyem");
-        }
+            if (i > 0) {
+
+            }
+
     }
+
 
 
     public void move() {
