@@ -1,12 +1,14 @@
 package com.javarush.island.demyanov.entity;
 
 
-import com.javarush.island.demyanov.Data;
+import com.javarush.island.demyanov.entity.util.Data;
 import com.javarush.island.demyanov.entity.herbivorous.*;
 import com.javarush.island.demyanov.entity.predator.*;
 import lombok.EqualsAndHashCode;
 
 import java.util.*;
+
+import static com.javarush.island.demyanov.entity.util.Util.createNewAnimals;
 
 @EqualsAndHashCode
 public class Creator {
@@ -35,17 +37,6 @@ public class Creator {
         createAnimals.add(createNewAnimals(new Caterpillar(), (int) (Data.getMaxValueOnField(Caterpillar.class) / 2)));
 
     }
-
-    public static Animal createNewAnimals(Animal animal, int i) {
-        for (int j = 0; j < i - 1; j++) {
-            Data.setFullHPBar(animal.getClass());
-            createAnimals.add(animal);
-        }
-        return animal;
-    }
-
-
-
 
     public static int randomizer(int from, int to) {
         return new Random().ints(from, to)

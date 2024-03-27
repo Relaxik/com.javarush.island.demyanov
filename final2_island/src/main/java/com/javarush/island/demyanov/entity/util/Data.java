@@ -1,4 +1,4 @@
-package com.javarush.island.demyanov;
+package com.javarush.island.demyanov.entity.util;
 
 
 import com.javarush.island.demyanov.entity.*;
@@ -13,6 +13,7 @@ public class Data {
 
     public static boolean isAlive = true;
 
+    public static List<Animal> temp = new ArrayList<>();
 
     static HashMap<Class<? extends Animal>, Integer> wolfsFood = new HashMap<>();
 
@@ -189,12 +190,7 @@ public class Data {
 
     public static ArrayList<Plant> plants = new ArrayList<>();
 
-    public static void plantsReborn(int set) {
-        for (int i = 0; i < set; i++) {
-            plants.add(new Plant());
-        }
 
-    }
 
     public static ArrayList<Class<? extends Animal>> animals = new ArrayList<>();
 
@@ -264,22 +260,7 @@ public class Data {
     }
 
 
-    public static String getRandomName() {
-        int random = Creator.randomizer(1, 10);
-        List<String> list = new ArrayList<>();
-        list.add("Nikolay");
-        list.add("Eugen");
-        list.add("Vasgen");
-        list.add("Ilyha");
-        list.add("Inokentiy");
-        list.add("Valera");
-        list.add("Serioga");
-        list.add("Slavka");
-        list.add("Egor");
-        list.add("Ryslan");
 
-        return list.get(random);
-    }
 
 
 }
