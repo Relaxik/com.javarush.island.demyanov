@@ -1,14 +1,15 @@
-package com.javarush.island.demyanov.entity;
+package com.javarush.island.demyanov.util;
 
 
-import com.javarush.island.demyanov.entity.util.Data;
-import com.javarush.island.demyanov.entity.herbivorous.*;
-import com.javarush.island.demyanov.entity.predator.*;
+import com.javarush.island.demyanov.entity.animal.Animal;
+import com.javarush.island.demyanov.data.Data;
+import com.javarush.island.demyanov.entity.animal.herbivorous.*;
+import com.javarush.island.demyanov.entity.animal.predator.*;
 import lombok.EqualsAndHashCode;
 
 import java.util.*;
 
-import static com.javarush.island.demyanov.entity.util.Util.createNewAnimals;
+import static com.javarush.island.demyanov.util.Util.createNewAnimals;
 
 @EqualsAndHashCode
 public class Creator {

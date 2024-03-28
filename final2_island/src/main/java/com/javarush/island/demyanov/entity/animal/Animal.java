@@ -1,8 +1,10 @@
-package com.javarush.island.demyanov.entity;
+package com.javarush.island.demyanov.entity.animal;
 
-import com.javarush.island.demyanov.entity.util.Data;
-import com.javarush.island.demyanov.entity.herbivorous.Herbivorous;
-import com.javarush.island.demyanov.entity.util.Util;
+
+import com.javarush.island.demyanov.util.Creator;
+import com.javarush.island.demyanov.data.Data;
+import com.javarush.island.demyanov.entity.animal.herbivorous.Herbivorous;
+import com.javarush.island.demyanov.util.Util;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
@@ -10,16 +12,10 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Animal {
 
-    private Animal animal = this;
-    private String name = getAnimalName();
+    private String name = this.getClass().getSimpleName();
 
-    private HashMap<Class<? extends Animal>, Integer> classIntegerHashMap = Data.foodForAll.get(animal.getClass().getSimpleName());
+    private HashMap<Class<? extends Animal>, Integer> classIntegerHashMap = Data.foodForAll.get(this.getClass().getSimpleName());
 
-
-    private String getAnimalName() {
-
-        return this.getClass().getSimpleName() + " " + Util.getRandomName();
-    }
 
     public void eat() {
         Util.aliveCheck(this);
@@ -39,7 +35,7 @@ public abstract class Animal {
     }
 
     public void eatPlants() {
-        if (animal instanceof Herbivorous) {
+        if (this instanceof Herbivorous) {
             int i = Creator.randomizer(0, Data.plants.size());
             if (Data.plants.get(i) == null) {
             } else {
@@ -51,7 +47,7 @@ public abstract class Animal {
     public void multiply() {
         int i = 0;
         for (Animal createAnimal : Creator.createAnimals) {
-            if (createAnimal.equals(animal)) {
+            if (createAnimal.equals(this)) {
                 i++;
             }
         }
@@ -63,23 +59,37 @@ public abstract class Animal {
 
     public void move() {
 
-        Util.aliveCheck(this);
-        int hunger = (int) Data.getHealthPoints(this.getClass());
         int maxSpeed = (int) Data.getMaxSpeed(this.getClass()) + 1;
-        if (maxSpeed <= 1) {
-        } else {
-            switch (Creator.randomizer(1, 5)) {
-                case (1) -> System.out.printf("%s moving forward. %d сells crossed. Health point = %d%n",
-                        name, Creator.randomizer(1, maxSpeed), hunger);
-                case (2) -> System.out.printf("%s moving right. %d сells crossed. Health point = %d%n",
-                        name, Creator.randomizer(1, maxSpeed), hunger);
-                case (3) -> System.out.printf("%s moving left. %d сells crossed. Health point = %d%n",
-                        name, Creator.randomizer(1, maxSpeed), hunger);
-                case (4) -> System.out.printf("%s moving backwards. %d сells crossed. Health point = %d%n",
-                        name, Creator.randomizer(1, maxSpeed), hunger);
-            }
+        if (maxSpeed > 1) {
+//            switch (Creator.randomizer(1, 5)) {
+//                // forward = up
+//                case (1) -> {
+//                    i = start - Creator.randomizer(1, maxSpeed);
+//                    j = start2;
+//                    Data.island.get(i + j).add(animal);
+//                }
+//                //right
+//                case (2) -> {
+//                    i = start + Creator.randomizer(1, maxSpeed);
+//                    j = start2;
+//                    Data.island.get(i + j).add(animal);
+//                }
+//                //left
+//                case (3) -> {
+//                    i = start;
+//                    j = start2 - Creator.randomizer(1, maxSpeed);
+//                    Data.island.get(i + j).add(animal);
+//                }
+//                //backwards = down
+//                case (4) -> {
+//                    i = start;
+//                    j = start2 + Creator.randomizer(1, maxSpeed);
+//                    Data.island.get(i + j).add(animal);
+//                }
+//            }
         }
     }
+
 
     public void die() {
         if (Data.getHealthPoints(this.getClass()) == 0) {

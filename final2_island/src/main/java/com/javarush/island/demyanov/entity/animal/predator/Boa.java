@@ -1,4 +1,4 @@
-package com.javarush.island.demyanov.entity.predator;
+package com.javarush.island.demyanov.entity.animal.predator;
 
 import lombok.Getter;
 

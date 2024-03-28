@@ -1,15 +1,23 @@
-package com.javarush.island.demyanov.entity.util;
+package com.javarush.island.demyanov.data;
 
 
 import com.javarush.island.demyanov.entity.*;
-import com.javarush.island.demyanov.entity.herbivorous.*;
-import com.javarush.island.demyanov.entity.predator.*;
+import com.javarush.island.demyanov.entity.animal.Animal;
+import com.javarush.island.demyanov.entity.animal.herbivorous.*;
+import com.javarush.island.demyanov.entity.animal.predator.*;
 import lombok.EqualsAndHashCode;
 
 import java.util.*;
 
 @EqualsAndHashCode
 public class Data {
+    public static ArrayList<Plant> plants = new ArrayList<>();
+
+    public static ArrayList<String> stringArray = new ArrayList<>();
+    public static ArrayList<Class<? extends Animal>> animals = new ArrayList<>();
+
+    public static Map<Integer, List<Object>> island = new HashMap<>();
+
 
     public static boolean isAlive = true;
 
@@ -188,12 +196,6 @@ public class Data {
         foodForAll.put("Duck", ducksFood);
     }
 
-    public static ArrayList<Plant> plants = new ArrayList<>();
-
-
-
-    public static ArrayList<Class<? extends Animal>> animals = new ArrayList<>();
-
 
     public static final Map<Class<? extends Animal>, double[]> ANIMAL_PARAMETERS = new HashMap<>();
 
@@ -258,9 +260,6 @@ public class Data {
         double[] doubles = Data.ANIMAL_PARAMETERS.get(clazz);
         doubles[4] = 100;
     }
-
-
-
 
 
 }

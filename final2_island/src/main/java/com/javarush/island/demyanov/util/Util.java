@@ -1,37 +1,16 @@
-package com.javarush.island.demyanov.entity.util;
+package com.javarush.island.demyanov.util;
 
 
-import com.javarush.island.demyanov.entity.Animal;
-import com.javarush.island.demyanov.entity.Creator;
+import com.javarush.island.demyanov.data.Data;
+import com.javarush.island.demyanov.entity.animal.Animal;
 import com.javarush.island.demyanov.entity.Plant;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Util {
-
-
-    public static String getRandomName() {
-        int random = Creator.randomizer(1, 10);
-        List<String> list = new ArrayList<>();
-        list.add("Nikolay");
-        list.add("Eugen");
-        list.add("Vasgen");
-        list.add("Ilyha");
-        list.add("Inokentiy");
-        list.add("Valera");
-        list.add("Serioga");
-        list.add("Slavka");
-        list.add("Egor");
-        list.add("Ryslan");
-
-        return list.get(random);
-    }
-
-
 
 
     public static Animal createNewAnimals(Animal animal, int i) {
@@ -42,12 +21,23 @@ public class Util {
         return animal;
     }
 
-    public static void plantsReborn(int set) {
+    public static Integer islandCreation(Integer x, Integer y, Integer plants) {
+        plantsReborn(plants);
+        Integer i = x * y;
+        Integer locationNo;
+        for (locationNo = 0; locationNo < i; locationNo++) {
+            Data.island.put(locationNo, new ArrayList<>());
+        }
+        return (x/2) * ((int) (1 * Math.pow(10, String.valueOf(x/2).length()))) + (y/2);
+    }
+
+    static void plantsReborn(int set) {
         for (int i = 0; i < set; i++) {
             Data.plants.add(new Plant());
         }
 
     }
+
 
     public static void arrayCleaning(List listForClean) {
         for (Object o : Data.temp) {
@@ -61,15 +51,19 @@ public class Util {
         Data.temp.clear();
     }
 
+    public void movingUp(Animal animal, Integer maxSpeed, Integer start) {
 
-    public static <T> Map<T, Long> countByStreamToMap(List<T> inputList) {
-        for (int i = 0; i < inputList.size(); i++) {
-            String simpleName = inputList.get(i).getClass().getSimpleName();
+        Integer i = start - Creator.randomizer(1, maxSpeed);
+        Data.island.get(i).add(animal);
+    }
+
+
+    public static void animnalsCounting(List<Animal> inputList) {
+        for (Animal createAnimal : inputList) {
+            Data.stringArray.add(createAnimal.getClass().getSimpleName());
         }
-
-
-        return inputList.stream().collect(Collectors.toMap(Function.identity(), v -> 1L, Long::sum));
-
+        Map<String, Long> map = Data.stringArray.stream().collect(Collectors.groupingBy(item -> item, Collectors.counting()));
+        map.forEach((k, v) -> System.out.println(k + " : " + v));
     }
 
 
