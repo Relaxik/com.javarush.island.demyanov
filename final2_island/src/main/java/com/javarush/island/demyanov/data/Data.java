@@ -5,24 +5,19 @@ import com.javarush.island.demyanov.entity.*;
 import com.javarush.island.demyanov.entity.animal.Animal;
 import com.javarush.island.demyanov.entity.animal.herbivorous.*;
 import com.javarush.island.demyanov.entity.animal.predator.*;
-import lombok.EqualsAndHashCode;
 
 import java.util.*;
 
-@EqualsAndHashCode
+
 public class Data {
     public static ArrayList<Plant> plants = new ArrayList<>();
-
     public static ArrayList<String> stringArray = new ArrayList<>();
-    public static ArrayList<Class<? extends Animal>> animals = new ArrayList<>();
 
-    public static Map<Integer, List<Object>> island = new HashMap<>();
-
-
+    public static Map<Integer, List<Animal>> island = new HashMap<>();
     public static boolean isAlive = true;
 
     public static List<Animal> temp = new ArrayList<>();
-
+   public static List<Animal> population = new ArrayList<>();
     static HashMap<Class<? extends Animal>, Integer> wolfsFood = new HashMap<>();
 
     static {
@@ -214,7 +209,7 @@ public class Data {
         ANIMAL_PARAMETERS.put(Sheep.class, new double[]{70, 140, 3, 15, 100});
         ANIMAL_PARAMETERS.put(Boar.class, new double[]{400, 50, 2, 50, 100});
         ANIMAL_PARAMETERS.put(Buffalo.class, new double[]{700, 10, 3, 100, 100});
-        ANIMAL_PARAMETERS.put(Caterpillar.class, new double[]{0.01, 1000, 0, 0, 100});
+        ANIMAL_PARAMETERS.put(Caterpillar.class, new double[]{0.01, 1000, 1, 0, 100});
         ANIMAL_PARAMETERS.put(Duck.class, new double[]{1, 200, 4, 0.15, 100});
 
     }
