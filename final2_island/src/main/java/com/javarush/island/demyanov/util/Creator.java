@@ -5,18 +5,16 @@ import com.javarush.island.demyanov.entity.animal.Animal;
 import com.javarush.island.demyanov.data.Data;
 import com.javarush.island.demyanov.entity.animal.herbivorous.*;
 import com.javarush.island.demyanov.entity.animal.predator.*;
-import lombok.EqualsAndHashCode;
+
 
 import java.util.*;
 
 import static com.javarush.island.demyanov.util.Util.createNewAnimals;
 
-@EqualsAndHashCode
+
 public class Creator {
 
-
-    // пока-что это подобие локации , на которой есть по 1 животному
-    public static List <Animal> createAnimals = new ArrayList<>();
+    public static List<Animal> createAnimals = new ArrayList<>();
 
 
     static {

@@ -5,10 +5,6 @@ import com.javarush.island.demyanov.util.Creator;
 import com.javarush.island.demyanov.data.Data;
 import com.javarush.island.demyanov.entity.animal.herbivorous.Herbivorous;
 import com.javarush.island.demyanov.util.Util;
-import lombok.SneakyThrows;
-
-
-import java.lang.reflect.Method;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -49,46 +45,43 @@ public abstract class Animal {
 
     public void multiply(Collection<Animal> animals) {
         int i = 0;
-
-            if (animals.contains(this)) {
-                i++;
-
+        if (animals.contains(this)) {
+            i++;
         }
         if (i > 0) {
             Data.temp.add(this);
         }
-
     }
 
-    public void move(Integer key) {
+    public int move(Integer key) {
+        int i = 0;
         int maxSpeed = (int) Data.getMaxSpeed(this.getClass()) + 1;
         if (maxSpeed > 1) {
             switch (Creator.randomizer(1, 5)) {
                 // forward = up
                 case (1) -> {
-                    int i = key - Creator.randomizer(1, maxSpeed);
+                    i = key - (int) (Creator.randomizer(1, maxSpeed) * Math.pow(10, String.valueOf(key / 10).length()));
                     Data.island.get(i).add(this);
                 }
                 //right
                 case (2) -> {
-                    int i = key + Creator.randomizer(1, maxSpeed);
-
+                    i = key + Creator.randomizer(1, maxSpeed);
                     Data.island.get(i).add(this);
                 }
                 //left
                 case (3) -> {
-
-                    int i = key - Creator.randomizer(1, maxSpeed);
+                    i = key - Creator.randomizer(1, maxSpeed);
                     Data.island.get(i).add(this);
                 }
                 //backwards = down
                 case (4) -> {
-
-                    int i = key + Creator.randomizer(1, maxSpeed);
+                    i = (int) (Creator.randomizer(1, maxSpeed) * Math.pow(10, String.valueOf(key / 10).length()));
                     Data.island.get(i).add(this);
                 }
             }
         }
+        return i;
+
     }
 
     public void die() {

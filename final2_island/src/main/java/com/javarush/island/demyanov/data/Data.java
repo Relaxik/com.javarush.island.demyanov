@@ -7,14 +7,17 @@ import com.javarush.island.demyanov.entity.animal.herbivorous.*;
 import com.javarush.island.demyanov.entity.animal.predator.*;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 public class Data {
     public static ArrayList<Plant> plants = new ArrayList<>();
     public static ArrayList<String> stringArray = new ArrayList<>();
 
-    public static Map<Integer, List<Animal>> island = new HashMap<>();
+    public static HashMap<Integer, List<Animal>> island = new HashMap<>();
     public static boolean isAlive = true;
+
+
 
     public static List<Animal> temp = new ArrayList<>();
    public static List<Animal> population = new ArrayList<>();
@@ -211,6 +214,7 @@ public class Data {
         ANIMAL_PARAMETERS.put(Buffalo.class, new double[]{700, 10, 3, 100, 100});
         ANIMAL_PARAMETERS.put(Caterpillar.class, new double[]{0.01, 1000, 1, 0, 100});
         ANIMAL_PARAMETERS.put(Duck.class, new double[]{1, 200, 4, 0.15, 100});
+        ANIMAL_PARAMETERS.put(Plant.class, new double[]{0, 0, 0, 0, 0});
 
     }
 

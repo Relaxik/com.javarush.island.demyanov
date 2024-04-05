@@ -12,7 +12,6 @@ public class Util {
 
     static List<Animal> tempo = new ArrayList<>();
 
-
     public static Animal createNewAnimals(Animal animal, int i) {
         for (int j = 0; j < i - 1; j++) {
             Data.setFullHPBar(animal.getClass());
@@ -26,19 +25,17 @@ public class Util {
         Integer locationNo;
         for (locationNo = 0; locationNo < i; locationNo++) {
             Data.island.put(locationNo, new ArrayList<>());
+            Data.island.get(locationNo).add(new Plant());
+
             plantsReborn(plants);
         }
         return (x / 2) * ((int) (1 * Math.pow(10, String.valueOf(x / 2).length()))) + (y / 2);
     }
-
     static void plantsReborn(int set) {
         for (int i = 0; i < set; i++) {
             Data.plants.add(new Plant());
         }
-
     }
-
-
     public static void arrayCleaning(List listForClean, List listTemp) {
         for (Object o : listTemp) {
             for (int i = listForClean.size() - 1; i >= 0; --i) {
@@ -51,16 +48,7 @@ public class Util {
         listTemp.clear();
     }
 
-    public static int getKey() {
-        for (int i = 0; i < 1; i++) {
-            if (Data.island.get(i) != null) {
-                return i;
-            }
-        }
-        return 0;
-    }
-
-    public static void islandEat() {
+    public static void locationEat() {
         for (int i = 0; i < 1; i++) {
             if (Data.island.get(i) != null) {
                 for (List<Animal> value : Data.island.values()) {
@@ -76,33 +64,40 @@ public class Util {
         }
     }
 
-    public static void islandMultiply() {
+    public static void locationMultiply() {
         for (int i = 0; i < 1; i++) {
             if (Data.island.get(i) != null) {
                 for (List<Animal> value : Data.island.values()) {
                     for (Animal animal : value) {
-
+                        animal.multiply(value);
                     }
-
-
+                    value.addAll(Data.temp);
+                    Data.population.addAll(value);
+                    break;
                 }
-
                 tempo.clear();
                 Data.temp.clear();
             }
         }
-
     }
 
-
-    public void movingUp(Animal animal, Integer maxSpeed, Integer start) {
-        Integer i = start - Creator.randomizer(1, maxSpeed);
-        Data.island.get(i).add(animal);
-
+    public static void locationMove() {
+        for (int i = 0; i < 1; i++) {
+            if (Data.island.get(i) != null) {
+                for (List<Animal> value : Data.island.values()) {
+                    for (Animal animal : value) {
+                        if (animal.move(i) > 0 || animal.move(i) < Data.island.size()) {
+                            Data.island.get(animal.move(i)).add(animal);
+                        } else if (animal.move(i) >= Data.island.size()) {
+                            Data.island.get(animal.move(i)).remove(animal);
+                        }
+                    }
+                    value.clear();
+                }
+            }
+        }
     }
-
-
-    public static void animnalsCounting(List<Animal> inputList) {
+    public static void animalsCounting(List<Animal> inputList) {
         for (Animal createAnimal : inputList) {
             Data.stringArray.add(createAnimal.getClass().getSimpleName());
         }

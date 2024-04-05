@@ -1,6 +1,8 @@
 package com.javarush.island.demyanov.entity;
 
-public class Plant {
+import com.javarush.island.demyanov.entity.animal.Animal;
+
+public class Plant extends Animal{
 
 
 }
