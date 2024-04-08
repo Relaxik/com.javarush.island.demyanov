@@ -15,12 +15,8 @@ public class Data {
     public static ArrayList<String> stringArray = new ArrayList<>();
 
     public static HashMap<Integer, List<Animal>> island = new HashMap<>();
-    public static boolean isAlive = true;
-
-
-
     public static List<Animal> temp = new ArrayList<>();
-   public static List<Animal> population = new ArrayList<>();
+    public static List<Animal> population = new ArrayList<>();
     static HashMap<Class<? extends Animal>, Integer> wolfsFood = new HashMap<>();
 
     static {
@@ -218,11 +214,6 @@ public class Data {
 
     }
 
-    public static double getWeight(Class<? extends Animal> clazz) {
-        double[] doubles = Data.ANIMAL_PARAMETERS.get(clazz);
-        double d = doubles[0];
-        return d;
-    }
 
     public static double getMaxValueOnField(Class clazz) {
         double[] doubles = Data.ANIMAL_PARAMETERS.get(clazz);
@@ -236,29 +227,34 @@ public class Data {
         return d;
     }
 
-    public static double getMaxFoodToFeedUp(Class clazz) {
-        double[] doubles = Data.ANIMAL_PARAMETERS.get(clazz);
-        double d = doubles[3];
-        return d;
-    }
-
-    public static double getHealthPoints(Class clazz) {
-        double[] doubles = Data.ANIMAL_PARAMETERS.get(clazz);
-        double d = doubles[4];
-        return d;
-    }
-
-    public static double setHealthPoints(Class clazz) {
-        double[] doubles = Data.ANIMAL_PARAMETERS.get(clazz);
-        doubles[4] = doubles[4] - 25;
-        double d = doubles[4];
-        return d;
-    }
-
-    public static void setFullHPBar(Class clazz) {
-        double[] doubles = Data.ANIMAL_PARAMETERS.get(clazz);
-        doubles[4] = 100;
-    }
-
+//    public static double getMaxFoodToFeedUp(Class clazz) {
+//        double[] doubles = Data.ANIMAL_PARAMETERS.get(clazz);
+//        double d = doubles[3];
+//        return d;
+//    }
+//
+//    public static double getHealthPoints(Class clazz) {
+//        double[] doubles = Data.ANIMAL_PARAMETERS.get(clazz);
+//        double d = doubles[4];
+//        return d;
+//    }
+//
+//    public static double setHealthPoints(Class clazz) {
+//        double[] doubles = Data.ANIMAL_PARAMETERS.get(clazz);
+//        doubles[4] = doubles[4] - 25;
+//        double d = doubles[4];
+//        return d;
+//    }
+//
+//    public static void setFullHPBar(Class clazz) {
+//        double[] doubles = Data.ANIMAL_PARAMETERS.get(clazz);
+//        doubles[4] = 100;
+//    }
+//
+//    public static double getWeight(Class<? extends Animal> clazz) {
+//        double[] doubles = Data.ANIMAL_PARAMETERS.get(clazz);
+//        double d = doubles[0];
+//        return d;
+//    }
 
 }

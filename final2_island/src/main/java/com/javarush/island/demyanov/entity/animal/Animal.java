@@ -1,6 +1,4 @@
 package com.javarush.island.demyanov.entity.animal;
-
-
 import com.javarush.island.demyanov.util.Creator;
 import com.javarush.island.demyanov.data.Data;
 import com.javarush.island.demyanov.entity.animal.herbivorous.Herbivorous;
@@ -11,10 +9,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class Animal {
 
-    private String name = this.getClass().getSimpleName();
-
     private HashMap<Class<? extends Animal>, Integer> classIntegerHashMap = Data.foodForAll.get(this.getClass().getSimpleName());
-
 
     public void eat(Collection<Animal> animals) {
         Util.predatorCheck(this);
@@ -31,7 +26,6 @@ public abstract class Animal {
             }
         }
     }
-
     public void eatPlants() {
         if (this instanceof Herbivorous) {
             int i = Creator.randomizer(0, Data.plants.size());
@@ -42,10 +36,9 @@ public abstract class Animal {
             }
         }
     }
-
     public void multiply(Collection<Animal> animals) {
         int i = 0;
-        if (animals.contains(this)) {
+        if (animals.contains(this) ) {
             i++;
         }
         if (i > 0) {
@@ -84,14 +77,6 @@ public abstract class Animal {
 
     }
 
-    public void die() {
-        if (Data.getHealthPoints(this.getClass()) == 0) {
-            System.out.println("\u001B[31m" + name + " Dies from cringe" + "\u001B[0m");
-            Data.isAlive = false;
-        } else {
-            Data.setHealthPoints(this.getClass());
-        }
-
-    }
-
 }
+
+

@@ -9,31 +9,31 @@ import com.javarush.island.demyanov.entity.animal.predator.*;
 
 import java.util.*;
 
-import static com.javarush.island.demyanov.util.Util.createNewAnimals;
+
 
 
 public class Creator {
 
-    public static List<Animal> createAnimals = new ArrayList<>();
+    public List<Animal> createAnimals = new ArrayList<>();
 
 
-    static {
+    {
 
-        createAnimals.add(createNewAnimals(new Wolf(), (int) (Data.getMaxValueOnField(Wolf.class) / 2)));
-        createAnimals.add(createNewAnimals(new Boa(), (int) (Data.getMaxValueOnField(Boa.class) / 2)));
-        createAnimals.add(createNewAnimals(new Fox(), (int) (Data.getMaxValueOnField(Fox.class) / 2)));
-        createAnimals.add(createNewAnimals(new Bear(), (int) (Data.getMaxValueOnField(Bear.class) / 2)));
-        createAnimals.add(createNewAnimals(new Eagle(), (int) (Data.getMaxValueOnField(Eagle.class) / 2)));
-        createAnimals.add(createNewAnimals(new Horse(), (int) (Data.getMaxValueOnField(Horse.class) / 2)));
-        createAnimals.add(createNewAnimals(new Deer(), (int) (Data.getMaxValueOnField(Deer.class) / 2)));
-        createAnimals.add(createNewAnimals(new Rabbit(), (int) (Data.getMaxValueOnField(Rabbit.class) / 2)));
-        createAnimals.add(createNewAnimals(new Mouse(), (int) (Data.getMaxValueOnField(Mouse.class) / 2)));
-        createAnimals.add(createNewAnimals(new Goat(), (int) (Data.getMaxValueOnField(Goat.class) / 2)));
-        createAnimals.add(createNewAnimals(new Sheep(), (int) (Data.getMaxValueOnField(Sheep.class) / 2)));
-        createAnimals.add(createNewAnimals(new Boar(), (int) (Data.getMaxValueOnField(Boar.class) / 2)));
-        createAnimals.add(createNewAnimals(new Buffalo(), (int) (Data.getMaxValueOnField(Buffalo.class) / 2)));
-        createAnimals.add(createNewAnimals(new Duck(), (int) (Data.getMaxValueOnField(Duck.class) / 2)));
-        createAnimals.add(createNewAnimals(new Caterpillar(), (int) (Data.getMaxValueOnField(Caterpillar.class) / 2)));
+        createAnimals.add(createNewAnimals(new Wolf(), (int) (Data.getMaxValueOnField(Wolf.class))));
+        createAnimals.add(createNewAnimals(new Boa(), (int) (Data.getMaxValueOnField(Boa.class))));
+        createAnimals.add(createNewAnimals(new Fox(), (int) (Data.getMaxValueOnField(Fox.class))));
+        createAnimals.add(createNewAnimals(new Bear(), (int) (Data.getMaxValueOnField(Bear.class))));
+        createAnimals.add(createNewAnimals(new Eagle(), (int) (Data.getMaxValueOnField(Eagle.class))));
+        createAnimals.add(createNewAnimals(new Horse(), (int) (Data.getMaxValueOnField(Horse.class))));
+        createAnimals.add(createNewAnimals(new Deer(), (int) (Data.getMaxValueOnField(Deer.class))));
+        createAnimals.add(createNewAnimals(new Rabbit(), (int) (Data.getMaxValueOnField(Rabbit.class))));
+        createAnimals.add(createNewAnimals(new Mouse(), (int) (Data.getMaxValueOnField(Mouse.class))));
+        createAnimals.add(createNewAnimals(new Goat(), (int) (Data.getMaxValueOnField(Goat.class))));
+        createAnimals.add(createNewAnimals(new Sheep(), (int) (Data.getMaxValueOnField(Sheep.class))));
+        createAnimals.add(createNewAnimals(new Boar(), (int) (Data.getMaxValueOnField(Boar.class))));
+        createAnimals.add(createNewAnimals(new Buffalo(), (int) (Data.getMaxValueOnField(Buffalo.class))));
+        createAnimals.add(createNewAnimals(new Duck(), (int) (Data.getMaxValueOnField(Duck.class))));
+        createAnimals.add(createNewAnimals(new Caterpillar(), (int) (Data.getMaxValueOnField(Caterpillar.class))));
 
     }
 
@@ -43,5 +43,11 @@ public class Creator {
                 .getAsInt();
     }
 
+    public Animal createNewAnimals(Animal animal, int i) {
+        for (int j = 0; j < i - 1; j++) {
+            createAnimals.add(animal);
+        }
+        return animal;
+    }
 
 }
