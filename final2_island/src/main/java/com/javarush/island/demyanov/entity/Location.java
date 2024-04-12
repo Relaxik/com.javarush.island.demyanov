@@ -4,7 +4,6 @@ import com.javarush.island.demyanov.entity.animal.Animal;
 import com.javarush.island.demyanov.util.Creator;
 import com.javarush.island.demyanov.util.Util;
 import java.util.Collections;
-import java.util.List;
 import java.util.concurrent.locks.Lock;
 
 public class Location implements Runnable {

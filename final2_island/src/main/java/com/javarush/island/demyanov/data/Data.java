@@ -7,7 +7,7 @@ import com.javarush.island.demyanov.entity.animal.herbivorous.*;
 import com.javarush.island.demyanov.entity.animal.predator.*;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
+
 
 
 public class Data {
